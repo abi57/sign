@@ -1,9 +1,12 @@
-.signcontents {
+* {
+  margin: 0;
+  padding: 0;
+}
+.container_content {
   display: flex;
   justify-content: center;
 }
-
-.signcontents section {
+.container section {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,20 +15,55 @@
   margin: 25px;
   padding: 0 50px;
 }
-.signcontents input {
+.container input {
   padding: 5px;
   margin: 10px 0px;
 }
-.btn-submit {
-  padding: 10px;
+.btn-primary {
+  padding: 8px;
   margin: 5px 0px;
   background: aqua;
-  border: 1px solid transparent;
+  border: 1px solid black;
   border-radius: 15px;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.btn-forget {
+  padding: 7px;
+  margin: 5px 0px;
+  text-align: center;
+  text-decoration: none;
+  background: aqua;
+  color: black;
+  border: 1px solid black;
+  border-radius: 15px;
+  font-weight: bold;
   transition: 0.3s;
 }
 
-.btn-submit:hover {
+.btn-primary:hover,
+.btn-forget:hover {
+  background: white;
+}
+form h3 {
+  margin: 20px 0 5px 0;
+}
+
+.btn-secondary {
+  font-size: 20px;
+  text-decoration: none;
+  text-align: center;
+  background: aqua;
+  color: black;
+  padding: 8px;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-secondary:hover {
   border: 1px solid black;
   background: white;
 }
