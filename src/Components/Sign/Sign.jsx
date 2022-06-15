@@ -8,7 +8,7 @@ import { auth } from "../../firebase-config";
 import "./Sign.css";
 import { useNavigate } from "react-router-dom";
 
-function Sign() {
+const Sign = () => {
   //Input data state for Email and password
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -77,9 +77,11 @@ function Sign() {
             Sign up
           </button>
         </section>
+
+        {}
       </div>
     </div>
   );
-}
+};
 
 export default Sign;
