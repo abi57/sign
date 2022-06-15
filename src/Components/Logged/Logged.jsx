@@ -3,18 +3,18 @@ import { useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import "./Logged.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Logged() {
   const [user, setUser] = useState({});
-  let history = useHistory();
+  let navigate = useNavigate();
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
   const logout = async () => {
     await signOut(auth);
-    history.push("/");
+    navigate("/");
   };
 
   return (

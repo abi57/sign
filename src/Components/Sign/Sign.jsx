@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import {
   signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
+  // signOut,
+  // onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import "./Sign.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Sign() {
+  //Input data state for Email and password
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [user, setUser] = useState({});
-  let history = useHistory();
+
+  let navigate = useNavigate();
+
+  //Password forget
   const forget = () => {
-    history.push("/forget");
+    navigate("/forget");
   };
 
   const inputName = (e) => {
@@ -24,15 +27,11 @@ function Sign() {
     return setLoginPassword(e.target.value);
   };
 
-  // ************************
-
-  // onAuthStateChanged(auth, (currentUser) => {
-  //   setUser(currentUser);
-  // });
+  // FOR lOGIN i.e Sign page
 
   const login = async () => {
-    if (inputName == null) {
-      alert("Empty username");
+    if (inputName === "") {
+      alert("Empty username...");
     } else {
       try {
         const user = await signInWithEmailAndPassword(
@@ -40,58 +39,46 @@ function Sign() {
           loginEmail,
           loginPassword
         );
-        history.push("/logged");
-        console.log(user);
+        navigate("/logged");
       } catch (error) {
         console.log(error.message);
       }
     }
   };
-
-  // const logout = async () => {
-  //   await signOut(auth);
-  // };
-
   return (
-    <>
-      <div className="container">
-        <div className="container_content">
-          <section>
-            <h3>LOGIN PAGE</h3>
-            <label>Email:</label>
-            <input
-              type="email"
-              placeholder="User Email"
-              onChange={inputName}
-              required
-            ></input>
-            <label>Password:</label>
-            <input
-              type="password"
-              placeholder="password"
-              onChange={inputPassword}
-              required
-            ></input>
+    <div className="container">
+      <div className="container_content">
+        <section>
+          <h3>LOGIN PAGE</h3>
+          <label>Email:</label>
+          <input
+            type="email"
+            placeholder="User Email"
+            onChange={inputName}
+            required
+          ></input>
 
-            <button className="btn-primary" onClick={login}>
-              Sign
-            </button>
-            <button className="btn-primary" onClick={forget}>
-              Forget
-            </button>
-            <h3>New Users? Sign up</h3>
-            <a href="/signup" className="btn-secondary">
-              Sign up
-            </a>
-          </section>
-        </div>
+          <label>Password:</label>
+          <input
+            type="password"
+            placeholder="password"
+            onChange={inputPassword}
+            required
+          ></input>
+
+          <button className="btn-primary" onClick={login}>
+            Sign
+          </button>
+          <button className="btn-primary" onClick={forget}>
+            Forget
+          </button>
+          <h3>New Users? Sign up</h3>
+          <button className="btn-primary" onClick={() => navigate("/signup")}>
+            Sign up
+          </button>
+        </section>
       </div>
-      {/* <div>
-        <h4> User Logged In: </h4>
-        {user?.email}
-        <button onClick={logout}> Sign Out </button>
-      </div> */}
-    </>
+    </div>
   );
 }
 

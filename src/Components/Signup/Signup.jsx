@@ -2,8 +2,9 @@ import React, { useState } from "react";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase-config";
+
 import "./Signup.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -12,7 +13,7 @@ const Signup = () => {
   const [confirm, setConfirm] = useState("");
   const [contact, setContact] = useState("");
 
-  let history = useHistory();
+  let navigate = useNavigate();
 
   const changeName = (e) => {
     return setName(e.target.value);
@@ -39,7 +40,7 @@ const Signup = () => {
         registerEmail,
         registerPassword
       );
-      history.push("/");
+      navigate("/");
 
       console.log(user);
     } catch (error) {
